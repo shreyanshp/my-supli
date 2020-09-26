@@ -4,13 +4,17 @@ var messages = [], //array that hold the record of each string in chat
   lastUserMessage = "", //keeps track of the most recent input string from the user
   botMessage = "", //var keeps track of what the chatbot is going to say
   botName = 'マイサプリ', //name of the chatbot
-  talking = true; //when false the speach function doesn't work
-  age = "";
-  sex = "";
-  weight = "";
-  temperature = "";
-  bp = "";
-  arr = "";
+  talking = true, //when false the speach function doesn't work
+  age = "",
+  sex = "",
+  weight = "",
+  temperature = "",
+  bp = "",
+  arr = "",
+  phonenumber = "",
+  ecommerceUrl = "https://rakuten_webservice-rakuten-marketplace-product-search-v1.p.rapidapi.com/services/api/Product/Search/20170426?keyword=",
+  me = "14478f483amshce21a80cf4fc7f8p1e1f28jsn1a007f1c3c58",
+  productUrl_result = document.querySelector("#detected-producturl");
 //
 //****************************************************************
 //****************************************************************
@@ -20,7 +24,7 @@ var messages = [], //array that hold the record of each string in chat
 //****************************************************************
 //****************************************************************
 function chatbotResponse() {
-  botMessage = "申し訳ございません、これから習います"; //the default message
+  botMessage = "申し訳ございません。入力内容については確認いたします。"; //the default message
   lastUserMessage = lastUserMessage.toLowerCase();
   switch(true) {
     case /こんにちは/.test(lastUserMessage):
@@ -75,25 +79,118 @@ function chatbotResponse() {
         break;
     case /ダイエット/.test(lastUserMessage):
         //calculate
-        botMessage = 'お悩みは？ <br> ダイエットまたは美肌';
+        if(weight>30 && weight<90){
+          resultOut("クリストファン", "エクストラストレングス");
+        } else if(weight>90 && sex==="女"){
+          resultOut("リボアラン", "植物性カプセル");
+        } else if(age>40 && sex==="女"){
+          resultOut("ノイロトロピン", "きなり配合");
+        } else if(age>40 && weight>90){
+          resultOut("シーバラ", "ロースドレス");
+        } else {
+          resultOut("メチコバール", "メチル スルフォニル メタン");
+        }
         messages.push("<b>" + botName + ":</b> " + botMessage);
         Speech(botMessage);
-        document.getElementById("chatbox").value = "血圧 : ";
         break; 
-    case /美肌/.test(lastUserMessage):
+    case /美肌|美白|しわ|たるみ|くすみ|毛はな|イボ|しみ/.test(lastUserMessage):
         //calculate
-        botMessage = 'お悩みは？ <br> ダイエットまたは美肌';
+        if(age>10 && age<40){
+          resultOut("クリストファン", "エクストラストレングス");
+        } else if(temperature<40 && temperature>35 && sex==="女"){
+          resultOut("プラセンタ", "純粋生プラセンタ");
+        } else if(age>40 && sex==="女"){
+          resultOut("シーバラ", "ロースドレス");
+        } else {
+          resultOut("ビオチン", "ビオチン チュワブル");
+        }
         messages.push("<b>" + botName + ":</b> " + botMessage);
         Speech(botMessage);
-        document.getElementById("chatbox").value = "血圧 : ";
         break; 
-    case /その他/.test(lastUserMessage):
+    case /肌荒れ/.test(lastUserMessage):
         //calculate
+        if(age>10 && age<40){
+          resultOut("トランサミン", "トラネキサム酸");
+        } else if(temperature<40 && temperature>35 && sex==="女"){
+          resultOut("プラセンタ", "純粋生プラセンタ");
+        } else if(age>40 && sex==="女"){
+          resultOut("シーバラ", "ロースドレス");
+        } else {
+          resultOut("ビオチン", "ビオチン チュワブル");
+        }
+        messages.push("<b>" + botName + ":</b> " + botMessage);
+        Speech(botMessage);
+        break;  
+    case /疲労回復/.test(lastUserMessage):
+        //calculate
+        if(age>10 && age<40){
+          resultOut("クリストファン", "エクストラストレングス");
+        } else if(temperature<40 && temperature>35 && sex==="女"){
+          resultOut("プラセンタ", "純粋生プラセンタ");
+        } else if(age>40 && sex==="女"){
+          resultOut("リボアラン", "植物性カプセル");
+        } else if(bp>40){
+          resultOut("タチオン", "ミルコラ");
+        } else {
+          resultOut("トランサミン", "トラネキサム酸");
+        }
+        messages.push("<b>" + botName + ":</b> " + botMessage);
+        Speech(botMessage);
+        break;
+    case /二日酔い/.test(lastUserMessage):
+        //calculate
+        if(age>10 && age<40){
+          resultOut("リボアラン", "植物性カプセル");
+        } else if(temperature<40 && temperature>35 && sex==="女"){
+          resultOut("タチオン", "ミルコラ");
+        } else {
+          resultOut("メチコバール", "メチル スルフォニル メタン");
+        }
+        messages.push("<b>" + botName + ":</b> " + botMessage);
+        Speech(botMessage);
+        break;     
+    case /不眠/.test(lastUserMessage):
+        //calculate
+        if(age>10 && age<40){
+          resultOut("クリストファン", "エクストラストレングス");
+        } else if(temperature<40 && temperature>35 && sex==="女"){
+          resultOut("プラセンタ", "純粋生プラセンタ");
+        } else {
+          resultOut("ビオチン", "ビオチン チュワブル");
+        }
+        messages.push("<b>" + botName + ":</b> " + botMessage);
+        Speech(botMessage);
+        break; 
+    case /抜け毛/.test(lastUserMessage):
+        //calculate
+        if(age>10 && age<40){
+          resultOut("クリストファン", "エクストラストレングス");
+        } else if(temperature<40 && temperature>35 && sex==="女"){
+          resultOut("エントミン", "オーラルクリアSS-K12");
+        } else if(age>40 && sex==="女"){
+          resultOut("シーバラ", "ロースドレス");
+        } else if(bp>40){
+          resultOut("ビオチン", "ビオチン チュワブル");
+        } else {
+          resultOut("トランサミン", "トラネキサム酸");
+        }
+        messages.push("<b>" + botName + ":</b> " + botMessage);
+        Speech(botMessage);
+        break;                 
+    case /頭痛い|喉痛い/.test(lastUserMessage):
         botMessage = 'ログイン';
         messages.push("<b>" + botName + ":</b> " + botMessage);
         Speech(botMessage);
         document.getElementById("chatbox").value = "携帯番号 : ";
-        break;                                          
+        break;  
+    case /携帯番号/.test(lastUserMessage):
+        arr = lastUserMessage.split(":");
+        phonenumber = arr[1].trim().toUpperCase();
+        console.log(phonenumber);
+        botMessage = '後程ご連絡差し上げます';
+        messages.push("<b>" + botName + ":</b> " + botMessage);
+        Speech(botMessage);
+        break;                                             
     case /静かに|黙れ/.test(lastUserMessage):
         talking = false;
         botMessage = 'screenreader is turned off now!'
@@ -171,3 +268,53 @@ function keyPress(e) {
 function placeHolder() {
   document.getElementById("chatbox").placeholder = "";
 }
+
+function resultOut(category, searchterm){
+  console.log(category);
+  console.log(searchterm);
+  botMessage = "こちらを使ってください : " + category;
+  sendRequest(ecommerceUrl + searchterm, "GET", "", me).then(function(product){
+    console.log(
+      JSON.parse(product.responseText).Products[0].Product.reviewUrlPC
+    );
+    productUrl_result.innerHTML =
+      "<a href='" +
+      JSON.parse(product.responseText).Products[0].Product.productUrlPC +
+      "'target='_blank'> <img src='" +
+      JSON.parse(product.responseText).Products[0].Product.mediumImageUrl +
+      "'></a>";
+  });
+}
+
+var sendRequest = function(url, method, data, apikey) {
+  // Create the XHR request
+  var request = new XMLHttpRequest();
+
+  // Return it as a Promise
+  return new Promise(function(resolve, reject) {
+    // Setup our listener to process compeleted requests
+    request.onreadystatechange = function() {
+      // Only run if the request is complete
+      if (request.readyState !== 4) return;
+
+      // Process the response
+      if (request.status >= 200 && request.status < 300) {
+        // If successful
+        resolve(request);
+      } else {
+        // If failed
+        reject({
+          status: request.status,
+          statusText: request.statusText
+        });
+      }
+    };
+
+    // Setup our HTTP request
+    request.open(method || "POST", url, true);
+
+    request.setRequestHeader("X-RapidAPI-Key", apikey);
+    // Send the request
+    request.send(data);
+  });
+};

@@ -20,6 +20,15 @@ body {
   border-radius: 15px;
 }
 
+#detected-category, #detected-producturl {
+  margin: auto;
+  padding-top: 20px;
+  padding-bottom: 25px;
+  padding-right: 25px;
+  padding-left: 25px;
+  border-radius: 15px;
+}
+
 #chatborder, .commonborder {
   border-style: solid;
   background-color: #f6f9f6;

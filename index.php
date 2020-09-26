@@ -19,7 +19,8 @@
     <p id="chatlog1" class="chatlog">&nbsp;</p>
     <input type="text" name="chat" id="chatbox" placeholder="こんにちは、ご用命は？" onfocus="placeHolder()">
   </div>
-  <p>まだ勉強中です、よろしくお願いします</p>
+  <h6 id="detected-producturl"></h6>
+  <h4>まだ勉強中です、よろしくお願いします</h4>
 
   <h4>PPT</h4>
   <div class = "commonborder">

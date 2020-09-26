@@ -1,0 +1,6 @@
+{
+  "name": "my-supli",
+  "description": "my-supli",
+  "repository": "https://github.com/heroku/php-getting-started",
+  "addons": []
+}

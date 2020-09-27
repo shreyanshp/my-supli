@@ -177,7 +177,7 @@ function chatbotResponse() {
         messages.push("<b>" + botName + ":</b> " + botMessage);
         Speech(botMessage);
         break;                 
-    case /頭痛い|喉痛い/.test(lastUserMessage):
+    case /頭痛|喉痛/.test(lastUserMessage):
         botMessage = '携帯番号を入れてください';
         messages.push("<b>" + botName + ":</b> " + botMessage);
         Speech(botMessage);

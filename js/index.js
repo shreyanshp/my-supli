@@ -187,7 +187,7 @@ function chatbotResponse() {
         arr = lastUserMessage.split(":");
         phonenumber = arr[1].trim().toUpperCase();
         console.log(phonenumber);
-        botMessage = '';
+        botMessage = '後程連絡いたします';
         messages.push("<b>" + botName + ":</b> " + botMessage);
         Speech(botMessage);
         break;                                             

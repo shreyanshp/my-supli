@@ -178,7 +178,7 @@ function chatbotResponse() {
         Speech(botMessage);
         break;                 
     case /頭痛い|喉痛い/.test(lastUserMessage):
-        botMessage = 'ログイン';
+        botMessage = '携帯番号を入れてください';
         messages.push("<b>" + botName + ":</b> " + botMessage);
         Speech(botMessage);
         document.getElementById("chatbox").value = "携帯番号 : ";
@@ -187,7 +187,7 @@ function chatbotResponse() {
         arr = lastUserMessage.split(":");
         phonenumber = arr[1].trim().toUpperCase();
         console.log(phonenumber);
-        botMessage = '後程ご連絡差し上げます';
+        botMessage = '';
         messages.push("<b>" + botName + ":</b> " + botMessage);
         Speech(botMessage);
         break;                                             
